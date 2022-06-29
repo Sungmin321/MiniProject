@@ -22,7 +22,7 @@ import miniproject.SingUp;
 import java.awt.BorderLayout;
 
 public class Login {
-	private JFrame frame;
+	private JFrame frame2222;
 	private JPanel contentPane;
 	Color Jgreen = new Color(17, 113, 89);
 	private JPasswordField passwordField;
