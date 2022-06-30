@@ -1,23 +1,23 @@
-package miniproject;
+package project;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JComboBox;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
 import java.awt.Dimension;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class Login {
 
@@ -41,6 +41,7 @@ public class Login {
 		frame.setBounds(100, 100, 380, 620);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 		
 		JLabel lblNewLabel = new JLabel("well healthy");
 		lblNewLabel.setForeground(new Color(17, 113, 89));
@@ -49,10 +50,6 @@ public class Login {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 40));
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setBackground(Color.WHITE);
@@ -92,20 +89,20 @@ public class Login {
 		frame.getContentPane().add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("\uAD00\uB9AC\uC790");
-		rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnNewRadioButton.setBackground(Color.WHITE);
-		panel.add(rdbtnNewRadioButton);
+		JRadioButton MasterRadioButton = new JRadioButton("\uAD00\uB9AC\uC790");
+		MasterRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
+		MasterRadioButton.setBackground(Color.WHITE);
+		panel.add(MasterRadioButton);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("\uD2B8\uB808\uC774\uB108");
-		rdbtnNewRadioButton_1.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnNewRadioButton_1.setBackground(Color.WHITE);
-		panel.add(rdbtnNewRadioButton_1);
+		JRadioButton TrannerRadioButton = new JRadioButton("\uD2B8\uB808\uC774\uB108");
+		TrannerRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
+		TrannerRadioButton.setBackground(Color.WHITE);
+		panel.add(TrannerRadioButton);
 		
-		JRadioButton rdbtnNewRadioButton_1_1 = new JRadioButton("\uD68C\uC6D0");
-		rdbtnNewRadioButton_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		rdbtnNewRadioButton_1_1.setBackground(Color.WHITE);
-		panel.add(rdbtnNewRadioButton_1_1);
+		JRadioButton CustomerRadioButton = new JRadioButton("\uD68C\uC6D0");
+		CustomerRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
+		CustomerRadioButton.setBackground(Color.WHITE);
+		panel.add(CustomerRadioButton);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBackground(Color.WHITE);
@@ -122,6 +119,28 @@ public class Login {
 		textField = new JTextField();
 		textField.setColumns(10);
 		panel_1_1.add(textField, BorderLayout.CENTER);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (CustomerRadioButton.isSelected()) {
+					frame.setVisible(false);
+					new Main_Customer();
+				}else if (TrannerRadioButton.isSelected()) {
+					new Main_Trainer();
+				}else {
+//					new Main_Master();
+				}
+			}
+		});
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(MasterRadioButton);
+		group.add(TrannerRadioButton);
+		group.add(CustomerRadioButton);
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("D:\\work\\miniproject\\image\\\uB85C\uADF8\uC778 \uC0AC\uB78C.png"));
+		lblNewLabel_2.setBounds(61, 61, 241, 277);
+		frame.getContentPane().add(lblNewLabel_2);
 		frame.setVisible(true);
 	}
 }
