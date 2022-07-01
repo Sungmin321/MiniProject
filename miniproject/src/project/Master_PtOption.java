@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 
-public class Trainer_ScheduleCancel {
+public class Master_PtOption {
 
 	Color btblue = new Color(52, 152, 219);
 	Color Jorange = new Color(244, 128, 75);
@@ -27,14 +27,14 @@ public class Trainer_ScheduleCancel {
 	Color Jlightgreen = new Color(177, 212, 98);
 	Color toolgreen = new Color(26, 188, 156); 
 	private JFrame frame;
-	String header[] = {"³¯Â¥", "½Ã°£´ë", "Trainer", "ÀÌÇà¿©ºÎ"};
-	String contents[][] = {{"2022/06/30", "16:00 ~ 17:00", "±è¸Æ", "O"}};
+	String names[] = {"ºù±×·¹", "Á¶¾È³ª", "ÀÌÁø¼ö", "", "", ""};
+	String positions[] = {"1","1","0","","",""};
 	
 	public static void main(String[] args) {
-		new Trainer_ScheduleCancel();
+		new Master_PtOption();
 	}
 
-	public Trainer_ScheduleCancel() {
+	public Master_PtOption() {
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.WHITE);
@@ -53,7 +53,7 @@ public class Trainer_ScheduleCancel {
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new Main_Trainer();
+				new Main_Master();
 			}
 		});
 		homeButton.setPreferredSize(new Dimension(60, 60));
@@ -62,7 +62,7 @@ public class Trainer_ScheduleCancel {
 		homeButton.setBorderPainted(false);
 		panel.add(homeButton, BorderLayout.WEST);
 		
-		JLabel titleLabel = new JLabel("PersonalTrainer_cancel");
+		JLabel titleLabel = new JLabel("Master_P.T Option");
 		titleLabel.setFont(new Font("HY¸ñ°¢ÆÄÀÓB", Font.PLAIN, 15));
 		panel.add(titleLabel, BorderLayout.CENTER);
 		titleLabel.setForeground(Color.white);
@@ -72,7 +72,7 @@ public class Trainer_ScheduleCancel {
 		beforeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new Main_Trainer();
+				new Main_Master();
 			}
 		});
 		beforeButton.setForeground(Color.WHITE);
@@ -90,60 +90,82 @@ public class Trainer_ScheduleCancel {
 		canceluppanel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 66, 340, 71);
+		scrollPane.setViewportBorder(null);
+		scrollPane.setBounds(12, 66, 340, 374);
 		canceluppanel.add(scrollPane);
+		scrollPane.setBackground(Color.white);
 		
 		JPanel PTcancelpanel = new JPanel();
+		scrollPane.setColumnHeaderView(PTcancelpanel);
 		PTcancelpanel.setBackground(Color.WHITE);
-		scrollPane.setViewportView(PTcancelpanel);
-		PTcancelpanel.setLayout(new GridLayout(0, 4, 0, 0));
+		PTcancelpanel.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		JLabel dataLabel = new JLabel("2022/06/30");
-		dataLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		PTcancelpanel.add(dataLabel);
-		
-		JLabel timeLabel = new JLabel("16:00 ~ 17:00");
-		timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		PTcancelpanel.add(timeLabel);
-		
-		JLabel nameLabel = new JLabel("\uAE40\uB9E5");
+		JLabel nameLabel = new JLabel(names[0]);
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		PTcancelpanel.add(nameLabel);
 		
-		JButton CancelButton = new JButton("\uCDE8\uC18C");
-		PTcancelpanel.add(CancelButton);
-		CancelButton.setBackground(btblue);
-		CancelButton.setForeground(Color.white);
-		CancelButton.addActionListener(new ActionListener() {
+		JLabel countLabel = new JLabel(positions[0]);
+		countLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		PTcancelpanel.add(countLabel);
+		
+		JButton OptionButton = new JButton("\uBCC0\uACBD");
+		PTcancelpanel.add(OptionButton);
+		OptionButton.setBackground(btblue);
+		OptionButton.setForeground(Color.white);
+		OptionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Master_PtCountDialog.main(null);
 			}
 		});
-		CancelButton.setFont(new Font("µ¸¿òÃ¼", Font.BOLD, 12));
+		OptionButton.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 12));
+		
+		JLabel nameLabel_1 = new JLabel(names[1]);
+		nameLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		PTcancelpanel.add(nameLabel_1);
+		
+		JLabel countLabel_1 = new JLabel(positions[1]);
+		countLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		PTcancelpanel.add(countLabel_1);
+		
+		JButton OptionButton2 = new JButton("\uBCC0\uACBD");
+		OptionButton2.setForeground(Color.WHITE);
+		OptionButton2.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 12));
+		OptionButton2.setBackground(new Color(52, 152, 219));
+		PTcancelpanel.add(OptionButton2);
+		
+		JLabel nameLabel_1_1 = new JLabel(names[2]);
+		nameLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		PTcancelpanel.add(nameLabel_1_1);
+		
+		JLabel countLabel_1_1 = new JLabel(positions[2]);
+		countLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		PTcancelpanel.add(countLabel_1_1);
+		
+		JButton OptionButton3 = new JButton("\uBCC0\uACBD");
+		OptionButton3.setForeground(Color.WHITE);
+		OptionButton3.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 12));
+		OptionButton3.setBackground(new Color(52, 152, 219));
+		PTcancelpanel.add(OptionButton3);
+		
+		JLabel nameLabel_1_1_1 = new JLabel(names[3]);
+		nameLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		PTcancelpanel.add(nameLabel_1_1_1);
 		
 		JPanel titlepanel = new JPanel();
+		titlepanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		titlepanel.setBounds(12, 10, 340, 55);
 		canceluppanel.add(titlepanel);
-		titlepanel.setLayout(new GridLayout(0, 4, 0, 0));
+		titlepanel.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		JLabel titleLabel1 = new JLabel("\uB0A0\uC9DC");
+		JLabel titleLabel1 = new JLabel("\uC131\uBA85");
 		titlepanel.add(titleLabel1);
 		titleLabel1.setFont(new Font("±¼¸²", Font.BOLD, 15));
 		titleLabel1.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel titleLabel2 = new JLabel("\uC2DC\uAC04\uB300");
+		JLabel titleLabel2 = new JLabel("\uB0A8\uC740 \uD69F\uC218");
 		titlepanel.add(titleLabel2);
 		titleLabel2.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel2.setFont(new Font("±¼¸²", Font.BOLD, 15));
-		
-		JLabel titleLabel3 = new JLabel("Trainer");
-		titlepanel.add(titleLabel3);
-		titleLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel3.setFont(new Font("±¼¸²", Font.BOLD, 15));
-		
-		JLabel titleLabel3_1 = new JLabel("\uC774\uD589\uC5EC\uBD80");
-		titlepanel.add(titleLabel3_1);
-		titleLabel3_1.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel3_1.setFont(new Font("±¼¸²", Font.BOLD, 15));
 		
 		frame.setVisible(true);
 

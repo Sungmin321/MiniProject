@@ -60,7 +60,7 @@ public class Login {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new SingUp();
+				new SignUp();
 			}
 		});
 		btnNewButton_1.setFont(new Font("HY°ß°íµñ", Font.PLAIN, 14));

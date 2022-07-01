@@ -18,6 +18,7 @@ public class Main_Customer {
 
 	private JFrame frame;
 	Color toolgreen = new Color(26, 188, 156);   
+	Color Jgreen = new Color(17, 113, 89); 
 	public static void main(String[] args) {
 		new Main_Customer();
 	}
@@ -61,88 +62,95 @@ public class Main_Customer {
 		Image changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		ImageIcon changeIcon = new ImageIcon(changeImg);
 		
-		JLabel lblNewLabel_1 = new JLabel(changeIcon);
-		lblNewLabel_1.setText("");
-		lblNewLabel_1.setBounds(22, 75, 150, 150);
-		frame.getContentPane().add(lblNewLabel_1);
-		
 		icon = new ImageIcon("D:\\work\\miniproject\\image\\CMainPTBack.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
-		
-		JLabel lblNewLabel_1_1 = new JLabel(changeIcon);
-		lblNewLabel_1_1.setBounds(191, 75, 150, 150);
-		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		icon = new ImageIcon("D:\\work\\miniproject\\image\\planicon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
 		
-		JButton btnNewButton_1 = new JButton(changeIcon);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton PlanButton = new JButton(changeIcon);
+		PlanButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
 				new Customer_Plan();
 			}
 		});
-		btnNewButton_1.setBackground(Color.WHITE);
-		btnNewButton_1.setBounds(22, 247, 150, 150);
-		btnNewButton_1.setBorderPainted(false);
-		frame.getContentPane().add(btnNewButton_1);
+		PlanButton.setBackground(Color.WHITE);
+		PlanButton.setBounds(22, 247, 150, 150);
+		PlanButton.setBorderPainted(false);
+		frame.getContentPane().add(PlanButton);
 		
 		icon = new ImageIcon("D:\\work\\miniproject\\image\\inouticon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);		
 		
-		JButton btnNewButton_1_1 = new JButton(changeIcon);
-		btnNewButton_1_1.addActionListener(new ActionListener() {
+		JButton InoutButton = new JButton(changeIcon);
+		InoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
 				new Customer_InOut();
 			}
 		});
-		btnNewButton_1_1.setBorderPainted(false);
-		btnNewButton_1_1.setBackground(Color.WHITE);
-		btnNewButton_1_1.setBounds(191, 247, 150, 150);
+		InoutButton.setBorderPainted(false);
+		InoutButton.setBackground(Color.WHITE);
+		InoutButton.setBounds(191, 247, 150, 150);
 		
-		frame.getContentPane().add(btnNewButton_1_1);
+		frame.getContentPane().add(InoutButton);
 		
 		icon = new ImageIcon("D:\\work\\miniproject\\image\\PTicon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
 		
-		JButton btnNewButton_1_2 = new JButton(changeIcon);
-		btnNewButton_1_2.addActionListener(new ActionListener() {
+		JButton PTButton = new JButton(changeIcon);
+		PTButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
 				new Customer_PersonalTrainer();
 			}
 		});
-		btnNewButton_1_2.setBorderPainted(false);
-		btnNewButton_1_2.setBackground(Color.WHITE);
-		btnNewButton_1_2.setBounds(22, 421, 150, 150);
-		frame.getContentPane().add(btnNewButton_1_2);
+		PTButton.setBorderPainted(false);
+		PTButton.setBackground(Color.WHITE);
+		PTButton.setBounds(22, 421, 150, 150);
+		frame.getContentPane().add(PTButton);
 		
 		icon = new ImageIcon("D:\\work\\miniproject\\image\\mypageicon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
 		
-		JButton btnNewButton_1_2_1 = new JButton(changeIcon);
-		btnNewButton_1_2_1.addActionListener(new ActionListener() {
+		JButton MypageButton = new JButton(changeIcon);
+		MypageButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
 			new Customer_Mypage();
 			}
 		});
-		btnNewButton_1_2_1.setBorderPainted(false);
-		btnNewButton_1_2_1.setBackground(Color.WHITE);
-		btnNewButton_1_2_1.setBounds(191, 421, 150, 150);
-		frame.getContentPane().add(btnNewButton_1_2_1);
+		MypageButton.setBorderPainted(false);
+		MypageButton.setBackground(Color.WHITE);
+		MypageButton.setBounds(191, 421, 150, 150);
+		frame.getContentPane().add(MypageButton);
+		
+		JButton btnName = new JButton("name");
+		btnName.setForeground(Color.WHITE);
+		btnName.setFont(new Font("«‘√ ∑“µ∏øÚ", Font.BOLD, 25));
+		btnName.setBackground(Jgreen);
+		btnName.setBounds(56, 81, 250, 60);
+		frame.getContentPane().add(btnName);
+		btnName.setBorderPainted(false);
+		
+		JButton PTcountbtn = new JButton("\uC794\uC5EC P.T \uD69F\uC218 : ");
+		PTcountbtn.setForeground(Color.WHITE);
+		PTcountbtn.setFont(new Font("«‘√ ∑“µ∏øÚ", Font.BOLD, 20));
+		PTcountbtn.setBackground(Jgreen);
+		PTcountbtn.setBounds(56, 162, 250, 60);
+		PTcountbtn.setBorderPainted(false);
+		frame.getContentPane().add(PTcountbtn);
 		frame.setVisible(true);
 		
 	}

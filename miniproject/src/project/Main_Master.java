@@ -13,17 +13,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Icon;
 
-public class Main_Trainer {
+public class Main_Master {
 
 	private JFrame frame;
 	Color toolgreen = new Color(26, 188, 156);   
-	Color Jorange = new Color(244, 128, 75);
 	public static void main(String[] args) {
-		new Main_Trainer();
+		new Main_Master();
 	}
 
-	public Main_Trainer() {
+	public Main_Master() {
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.WHITE);
@@ -42,7 +42,7 @@ public class Main_Trainer {
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new Main_Trainer();
+				new Main_Master();
 			}
 		});
 		homeButton.setPreferredSize(new Dimension(60, 60));
@@ -51,7 +51,7 @@ public class Main_Trainer {
 		homeButton.setBorderPainted(false);
 		panel.add(homeButton, BorderLayout.WEST);
 		
-		JLabel titleLabel = new JLabel("healthy home(Trainer)");
+		JLabel titleLabel = new JLabel("healthy home(Matser)");
 		titleLabel.setFont(new Font("HY목각파임B", Font.PLAIN, 15));
 		panel.add(titleLabel, BorderLayout.CENTER);
 		titleLabel.setForeground(Color.white);
@@ -66,95 +66,92 @@ public class Main_Trainer {
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
 		
-		icon = new ImageIcon("D:\\work\\miniproject\\image\\tricon1.png");
+		icon = new ImageIcon("D:\\work\\miniproject\\image\\managementicon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
 		
-		JButton trButton1 = new JButton(changeIcon);
-		trButton1.addActionListener(new ActionListener() {
+		JButton mButton1 = new JButton(changeIcon);
+		mButton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new Trainer_Scheduleinquiry();
+				new Master_Management();
 			}
 		});
-		trButton1.setBackground(Color.WHITE);
-		trButton1.setBounds(22, 247, 150, 150);
-		trButton1.setBorderPainted(false);
-		frame.getContentPane().add(trButton1);
+		mButton1.setBackground(Color.WHITE);
+		mButton1.setBounds(22, 247, 150, 150);
+		mButton1.setBorderPainted(false);
+		frame.getContentPane().add(mButton1);
 		
-		icon = new ImageIcon("D:\\work\\miniproject\\image\\tricon2.png");
+		icon = new ImageIcon("D:\\work\\miniproject\\image\\joinicon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);		
 		
-		JButton trButton2 = new JButton(changeIcon);
-		trButton2.addActionListener(new ActionListener() {
+		JButton mButton2 = new JButton(changeIcon);
+		mButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new Trainer_ScheduleCancel();
+				new Master_TRSignup();
 			}
 		});
-		trButton2.setBorderPainted(false);
-		trButton2.setBackground(Color.WHITE);
-		trButton2.setBounds(191, 247, 150, 150);
+		mButton2.setBorderPainted(false);
+		mButton2.setBackground(Color.WHITE);
+		mButton2.setBounds(191, 247, 150, 150);
 		
-		frame.getContentPane().add(trButton2);
+		frame.getContentPane().add(mButton2);
 		
-		icon = new ImageIcon("D:\\work\\miniproject\\image\\tricon3.png");
+		icon = new ImageIcon("D:\\work\\miniproject\\image\\optionicon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
 		
-		JButton trButton3 = new JButton(changeIcon);
-		trButton3.addActionListener(new ActionListener() {
+		JButton mButton3 = new JButton(changeIcon);
+		mButton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new Trainer_TimeSet();
+				new Master_PtOption();
 			}
 		});
-		trButton3.setBorderPainted(false);
-		trButton3.setBackground(Color.WHITE);
-		trButton3.setBounds(22, 421, 150, 150);
-		frame.getContentPane().add(trButton3);
+		mButton3.setBorderPainted(false);
+		mButton3.setBackground(Color.WHITE);
+		mButton3.setBounds(22, 421, 150, 150);
+		frame.getContentPane().add(mButton3);
 		
-		icon = new ImageIcon("D:\\work\\miniproject\\image\\tricon4.png");
+		icon = new ImageIcon("D:\\work\\miniproject\\image\\Sugicon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
 		
-		JButton trButton4 = new JButton(changeIcon);
-		trButton4.addActionListener(new ActionListener() {
+		JButton mButton4 = new JButton(changeIcon);
+		mButton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			frame.setVisible(false);
-			new Trainer_retouch();
+			new Master_SuggestionsCheck();
 			}
 		});
-		trButton4.setBorderPainted(false);
-		trButton4.setBackground(Color.WHITE);
-		trButton4.setBounds(191, 421, 150, 150);
-		frame.getContentPane().add(trButton4);
+		mButton4.setBorderPainted(false);
+		mButton4.setBackground(Color.WHITE);
+		mButton4.setBounds(191, 421, 150, 150);
+		frame.getContentPane().add(mButton4);
 		
-		icon = new ImageIcon("D:\\work\\miniproject\\image\\tricon.png");
+		icon = new ImageIcon("D:\\work\\miniproject\\image\\micon.png");
 		img = icon.getImage();
 		changeImg = img.getScaledInstance(70, 70, Image.SCALE_SMOOTH);
 		changeIcon = new ImageIcon(changeImg);
 		
 		JLabel sLabel = new JLabel(changeIcon);
-		sLabel.setBounds(142, 150, 70, 70);
+		sLabel.setBounds(282, 70, 70, 70);
 		frame.getContentPane().add(sLabel);
 		
-		JButton trnameButton = new JButton("\uD2B8\uB808\uC774\uB108");
-		trnameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		trnameButton.setBorderPainted(false);
-		trnameButton.setForeground(Color.white);
-		trnameButton.setBackground(Jorange);
-		trnameButton.setFont(new Font("함초롬돋움", Font.BOLD, 25));
-		trnameButton.setBounds(56, 70, 250, 60);
-		frame.getContentPane().add(trnameButton);
+		icon = new ImageIcon("D:\\work\\miniproject\\image\\Mastericon.png");
+		img = icon.getImage();
+		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+		changeIcon = new ImageIcon(changeImg);
+		
+		JLabel LLabel = new JLabel(changeIcon);
+		LLabel.setBounds(107, 77, 150, 150);
+		frame.getContentPane().add(LLabel);
 		frame.setVisible(true);
 		
 	}

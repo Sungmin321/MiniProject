@@ -8,24 +8,17 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
-
-import project.Customer_Plan;
-import project.Main_Customer;
-
-import java.awt.SystemColor;
 import javax.swing.JTextArea;
-import javax.swing.UIManager;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 public class Mypage_Suggestions {
 
@@ -88,11 +81,6 @@ public class Mypage_Suggestions {
 		BeforeButton.setBounds(10, 521, 170, 50);
 		frame.getContentPane().add(BeforeButton);
 		
-		ImageIcon icon = new ImageIcon("D:\\\\work\\\\miniproject\\\\image\\\\rutinadd.png");
-		Image img = icon.getImage();
-		Image changeImg = img.getScaledInstance(350, 48, Image.SCALE_SMOOTH);
-		ImageIcon changeIcon = new ImageIcon(changeImg);
-		
 		JPanel Suggestionspanel = new JPanel();
 		Suggestionspanel.setBackground(Color.WHITE);
 		Suggestionspanel.setBounds(0, 59, 364, 452);
@@ -112,6 +100,12 @@ public class Mypage_Suggestions {
 		SuggestionstextArea.setFont(new Font("함초롬바탕", Font.PLAIN, 13));
 		SuggestionstextArea.setText("\uAC74\uC758\uC0AC\uD56D\uC744 \uB0A8\uACA8\uC8FC\uC138\uC694");
 		SuggestionstextArea.setBounds(12, 50, 340, 392);
+		   // TextArea의 테두리선의 색을 검정 두깨를 3px로 설정합니다.
+	    Border lineBorder = BorderFactory.createLineBorder(Color.black, 2);
+	    // 텍스트와 TextArea 경계 사이에 여백을 두기 위해서 emptyBorder를 생성합니다.
+	    Border emptyBorder = BorderFactory.createEmptyBorder(7, 7, 7, 7);
+	    //TextArea에 lineBorder(검정테두리), emptyBorder(여백)로 구성된 복합 경계선을 설정합니다.
+	    SuggestionstextArea.setBorder(BorderFactory.createCompoundBorder(lineBorder, emptyBorder));
 		Suggestionspanel.add(SuggestionstextArea);
 		
 		JButton SaveButton = new JButton("SAVE");
