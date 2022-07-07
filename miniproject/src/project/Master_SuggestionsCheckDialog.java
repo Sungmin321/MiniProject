@@ -37,7 +37,8 @@ public class Master_SuggestionsCheckDialog extends JDialog {
 	public Master_SuggestionsCheckDialog() {
 		setModal(true);
 		setTitle("SuggestionsCheckDialog");
-		setBounds(100, 100, 450, 300);
+		setSize(450, 300);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

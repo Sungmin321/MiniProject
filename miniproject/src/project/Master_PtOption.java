@@ -38,7 +38,8 @@ public class Master_PtOption {
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 380, 620);
+		frame.setSize(380, 620);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);

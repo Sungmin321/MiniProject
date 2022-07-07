@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Icon;
 
@@ -24,10 +25,12 @@ public class Main_Master {
 	}
 
 	public Main_Master() {
+		System.out.println(MemberVo.user.getId());
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 380, 620);
+		frame.setSize(380, 620);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
@@ -55,6 +58,22 @@ public class Main_Master {
 		titleLabel.setFont(new Font("HY목각파임B", Font.PLAIN, 15));
 		panel.add(titleLabel, BorderLayout.CENTER);
 		titleLabel.setForeground(Color.white);
+		
+		JButton LogoutButton = new JButton("");
+		LogoutButton.setIcon(new ImageIcon("D:\\work\\miniproject\\image\\logout.png"));
+		LogoutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					frame.setVisible(false);
+					new Login();
+				}
+			}
+		});
+		LogoutButton.setPreferredSize(new Dimension(60, 60));
+		LogoutButton.setBorderPainted(false);
+		LogoutButton.setBackground(new Color(26, 188, 156));
+		panel.add(LogoutButton, BorderLayout.EAST);
 		
 		ImageIcon icon = new ImageIcon("D:\\work\\miniproject\\image\\CMainnameBack.png");
 		Image img = icon.getImage();

@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,8 +27,7 @@ public class Plan_Statistics {
 	Color toolgreen = new Color(26, 188, 156); 
 	private JFrame frame;
 	private JTable table;
-	String header[] = {"날짜", "시작시간", "종료시간", "루틴명", "운동시간"};
-	String contents[][] = {{"2022/06/30", "16:00", "17:00", "Rutin1","1시간"}};
+	String header[] = {"날짜", "시작시간", "종료시간", "루틴넘버"}; //고정
 	
 	public static void main(String[] args) {
 		new Plan_Statistics();
@@ -37,7 +37,8 @@ public class Plan_Statistics {
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 380, 620);
+		frame.setSize(380, 620);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
@@ -91,6 +92,19 @@ public class Plan_Statistics {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 10, 340, 433);
 		panel_3.add(scrollPane);
+		
+		// 데이터를 갖고와서 넣기
+		ArrayList<PlanVo> list = new MemberDAO().Plan_list(MemberVo.user.getId());
+//		ArrayList<PlanVo> list = new MemberDAO().Plan_list("123");
+		System.out.println(list.size());
+		String contents [][] = new String[list.size()][4];
+		for (int i = 0; i<list.size() ; i++) {
+			PlanVo now = list.get(i);
+				contents[i][0] = now.getDATE();
+				contents[i][1] = now.getSTIME();
+				contents[i][2] = now.getETIME();
+				contents[i][3] = now.getRUTIN();
+		}
 		
 		table = new JTable(contents, header);
 		scrollPane.setViewportView(table);

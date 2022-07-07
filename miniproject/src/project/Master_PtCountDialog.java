@@ -37,7 +37,8 @@ public class Master_PtCountDialog extends JDialog {
 	public Master_PtCountDialog() {
 		setTitle("P.T Count Seting Dialog");
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setSize(450, 300);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.DARK_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

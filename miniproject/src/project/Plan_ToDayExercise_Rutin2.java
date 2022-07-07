@@ -23,7 +23,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class Plan_ToDayExercise_Rutin1 {
+public class Plan_ToDayExercise_Rutin2 {
 
 	private JFrame frame;
 	Color toolgreen = new Color(26, 188, 156);
@@ -33,8 +33,8 @@ public class Plan_ToDayExercise_Rutin1 {
 	private JTextField exnumbertf;
 	private String ECname, ECset, ECweight, ECnumber;
 	private JTextField Detf;
-	private String Rutinnum = "1";
-	int size = Integer.valueOf(new MemberDAO().getRutinsize(Rutinnum, MemberVo.user.getId()));
+	private String Rutinnum = "2";
+	int size = Integer.valueOf( new MemberDAO().getRutinsize(Rutinnum, MemberVo.user.getId()));
 	JPanel ecercisepanel[] = new JPanel[size];
 	JPanel printpanel[] = new JPanel[size];
 	JLabel exnameLabel[] = new JLabel[size];
@@ -46,10 +46,10 @@ public class Plan_ToDayExercise_Rutin1 {
 	JLabel exnumberLabel[] = new JLabel[size];
 
 	public static void main(String[] args) {
-		new Plan_ToDayExercise_Rutin1();
+		new Plan_ToDayExercise_Rutin2();
 	}
 
-	public Plan_ToDayExercise_Rutin1() {
+	public Plan_ToDayExercise_Rutin2() {
 		
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
@@ -72,7 +72,7 @@ public class Plan_ToDayExercise_Rutin1 {
 		mainpanel.add(panelhead);
 		panelhead.setLayout(new BorderLayout(0, 0));
 
-		JLabel headLabel = new JLabel("Plan_ToDay Exercise_Rutin1");
+		JLabel headLabel = new JLabel("Plan_ToDay Exercise_Rutin2");
 		headLabel.setForeground(Color.WHITE);
 		headLabel.setFont(new Font("HY목각파임B", Font.PLAIN, 15));
 		panelhead.add(headLabel, BorderLayout.CENTER);
@@ -89,6 +89,8 @@ public class Plan_ToDayExercise_Rutin1 {
 		homeButton.setIcon(new ImageIcon("D:\\work\\miniproject\\image\\home.png"));
 		homeButton.setBackground(toolgreen);
 		homeButton.setBorderPainted(false);
+
+
 
 		JPanel rutinaddpanel = new JPanel();
 		rutinaddpanel.setBounds(0, 70, 365, 120);

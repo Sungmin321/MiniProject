@@ -11,15 +11,20 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InOut_WeightDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
+	private JTextField weightTF;
+	private JCheckBox ExerciseCheckbox;
+	private JCheckBox DrinkingCheckbox;
 
 	/**
 	 * Launch the application.
@@ -39,7 +44,8 @@ public class InOut_WeightDialog extends JDialog {
 	 */
 	public InOut_WeightDialog() {
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setSize(450, 300);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(SystemColor.window);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -52,20 +58,20 @@ public class InOut_WeightDialog extends JDialog {
 			contentPanel.add(WeightLabel);
 		}
 		{
-			textField = new JTextField();
-			textField.setText("\uCCB4\uC911\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694");
-			contentPanel.add(textField);
-			textField.setColumns(10);
+			weightTF = new JTextField();
+			weightTF.setText("\uCCB4\uC911\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694");
+			contentPanel.add(weightTF);
+			weightTF.setColumns(10);
 		}
 		{
-			JCheckBox ExerciseCheckbox = new JCheckBox("\uC6B4\uB3D9");
+			ExerciseCheckbox = new JCheckBox("\uC6B4\uB3D9");
 			ExerciseCheckbox.setFont(new Font("굴림", Font.PLAIN, 40));
 			ExerciseCheckbox.setHorizontalAlignment(SwingConstants.CENTER);
 			ExerciseCheckbox.setBackground(SystemColor.window);
 			contentPanel.add(ExerciseCheckbox);
 		}
 		{
-			JCheckBox DrinkingCheckbox = new JCheckBox("\uC74C\uC8FC");
+			DrinkingCheckbox = new JCheckBox("\uC74C\uC8FC");
 			DrinkingCheckbox.setFont(new Font("굴림", Font.PLAIN, 40));
 			DrinkingCheckbox.setHorizontalAlignment(SwingConstants.CENTER);
 			DrinkingCheckbox.setBackground(Color.WHITE);
@@ -77,6 +83,32 @@ public class InOut_WeightDialog extends JDialog {
 			buttonPane.setLayout(new GridLayout(0, 2, 0, 0));
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String weight = weightTF.getText();
+						String Exercise = "0", Drinking = "0";
+						if (DrinkingCheckbox.isSelected()) {
+							Drinking = "1";
+						}
+						if (ExerciseCheckbox.isSelected()) {
+							Exercise = "1";
+						}
+						// 데이터가 있는지 없는지. 확인하고
+						if (new MemberDAO().Inout_test(MemberVo.user.getId())) {
+							// 있으면 true -> 그럼 업데이트.
+							if (new Insert().Inout_update(MemberVo.user.getId(), weight, Drinking, Exercise)) {
+								JOptionPane.showMessageDialog(null, "data correction");
+							}
+						} else {
+							// 없으면 false. 새로 insert 해주고
+							if (new Insert().Inout_insert(MemberVo.user.getId(), weight, Drinking, Exercise)) {
+								JOptionPane.showMessageDialog(null, "today info Recode");
+							}
+
+						}
+
+					}
+				});
 				okButton.setBackground(SystemColor.activeCaption);
 				okButton.setFont(new Font("굴림", Font.BOLD, 20));
 				okButton.setActionCommand("OK");
@@ -85,6 +117,11 @@ public class InOut_WeightDialog extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
+					}
+				});
 				cancelButton.setBackground(SystemColor.activeCaptionBorder);
 				cancelButton.setFont(new Font("굴림", Font.BOLD, 20));
 				cancelButton.setActionCommand("Cancel");

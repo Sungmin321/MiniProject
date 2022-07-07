@@ -39,7 +39,8 @@ public class InOut_FoodRecordDialog extends JDialog {
 	public InOut_FoodRecordDialog() {
 		setTitle("\uC2DD\uB2E8 \uD655\uC778");
 		setModal(true);
-		setBounds(100, 100, 450, 527);
+		setSize(450, 527);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(SystemColor.window);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -74,7 +75,7 @@ public class InOut_FoodRecordDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						System.exit(0);
+						setVisible(false);
 					}
 				});
 				okButton.setBackground(btblue);
