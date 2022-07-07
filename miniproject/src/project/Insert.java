@@ -269,10 +269,10 @@ public class Insert {
 			boolean b = stmt.execute(query);
 
 			if (!b) {
-				System.out.println("Insert success.\n");
+				System.out.println("delete(update) success.\n");
 				return true;
 			} else {
-				System.out.println("Insert fail.\n");
+				System.out.println("delete(update) fail.\n");
 				return false;
 			}
 		} catch (Exception e) {
@@ -323,10 +323,10 @@ public class Insert {
 			boolean b = stmt.execute(query);
 
 			if (!b) {
-				System.out.println("Insert success.\n");
+				System.out.println("update success.\n");
 				return true;
 			} else {
-				System.out.println("Insert fail.\n");
+				System.out.println("update fail.\n");
 				return false;
 			}
 		} catch (Exception e) {
@@ -346,6 +346,35 @@ public class Insert {
 			boolean b = stmt.execute(query);
 
 			if (!b) {
+				System.out.println("update success.\n");
+				return true;
+			} else {
+				System.out.println("update fail.\n");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean NOTI_BOARD_insert(String contents, String id) {
+		try {
+			connDB();
+			// 일단은 카운트를 받는거부터.
+			String query = "SELECT count(*) FROM NOTICE_BOARD";
+			System.out.println("SQL : " + query);
+			rs = stmt.executeQuery(query);
+			rs.next();
+			System.out.println("rs.next 통과");
+			String count = String.valueOf(rs.getInt("count(*)") + 1);
+			System.out.println("count 저장");
+			query = "INSERT INTO NOTICE_BOARD VALUES (" + count + ", TO_CHAR(SYSDATE, 'YYYY-MM-DD'), '" + contents
+					+ "', '" + id + "', 1)";
+
+			boolean b = stmt.execute(query);
+
+			if (!b) {
 				System.out.println("Insert success.\n");
 				return true;
 			} else {
@@ -356,8 +385,53 @@ public class Insert {
 			e.printStackTrace();
 			return false;
 		}
+
 	}
-	
+
+	// customer mypage 개인정보수정
+	public boolean customer_update(String password, String email, String phone_number, String id) {
+		try {
+			connDB();
+			String query = "UPDATE CUSTOMER_INFO SET PASSWORD = '" + password + "', EMAIL = '" + email
+					+ "',  PHONE_NUMBER = " + phone_number + " WHERE id = '" + id + "'";
+
+			boolean b = stmt.execute(query);
+
+			if (!b) {
+				System.out.println("update success.\n");
+				return true;
+			} else {
+				System.out.println("update fail.\n");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean Trainer_update(String password, String phone_number, String id) {
+		try {
+			connDB();
+			String query = "UPDATE TRAINER_INFO SET PASSWORD = '" + password + "', PHONE_NUMBER = " + phone_number + " WHERE ID = '" + id + "'";
+			
+			boolean b = stmt.execute(query);
+			
+			if (!b) {
+				System.out.println("update success.\n");
+				return true;
+			} else {
+				System.out.println("update fail.\n");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+
 	public void connDB() {
 
 		try {

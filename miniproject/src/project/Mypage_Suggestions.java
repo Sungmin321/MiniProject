@@ -110,6 +110,19 @@ public class Mypage_Suggestions {
 		Suggestionspanel.add(SuggestionstextArea);
 		
 		JButton SaveButton = new JButton("SAVE");
+		SaveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String contents = SuggestionstextArea.getText();
+				if(new Insert().NOTI_BOARD_insert(contents, MemberVo.user.getId())) {
+					
+				}
+//				if(new MemberDAO().NOTICE_BOARD_check(MemberVo.user.getId())) {
+//					//true -> 당일날 데이터가 있음. 내용을 수정하는 형식으로,
+//				}else {
+//					//false -> 당일날 데이터가 없음. 새로 등록
+//				}
+			}
+		});
 		SaveButton.setForeground(Color.WHITE);
 		SaveButton.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		SaveButton.setBorderPainted(false);

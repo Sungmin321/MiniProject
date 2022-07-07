@@ -196,10 +196,34 @@ public class MemberDAO {
 		return false;
 	}
 
+	//InoutDB에 같은 날에 등록한 데이터가 있는지 확인.
 	public boolean Inout_test(String id) {
 		try {//SELECT * FROM "INOUT" WHERE ID='123' AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') = INOUT_DATE 
 			connDB();
-			String query = "SELECT * FROM \"INOUT\" WHERE ID='" + id + "' AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') = INOUT_DATE";
+			String query = "SELECT * FROM INOUT WHERE ID='" + id + "' AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') = INOUT_DATE";
+			
+			System.out.println("SQL : " + query);
+			rs = stmt.executeQuery(query);
+			rs.last();
+			System.out.println("rs.getRow() : " + rs.getRow());
+			
+			if (rs.getRow() == 0) {
+				System.out.println("0 row selected .....");
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	//NOTIBOAD DB에 같은 날에 등록한 데이터가 있는지 확인.
+	public boolean NOTICE_BOARD_check(String id) {
+		try {//SELECT * FROM "INOUT" WHERE ID='123' AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') = INOUT_DATE 
+			connDB();
+			String query = "SELECT * FROM NOTICE_BOARD WHERE ID='" + id + "' AND TO_CHAR(SYSDATE, 'YYYY-MM-DD') = NOTI_DATE";
 			
 			System.out.println("SQL : " + query);
 			rs = stmt.executeQuery(query);
@@ -218,6 +242,7 @@ public class MemberDAO {
 		return false;
 	}
 
+	//rutin test에 같은 운동명이 같은 루틴에 있는지 확인
 	public boolean plan_Rutin_test(String ECname, String Rutinnum, String id) {
 		try {// SELECT * FROM RUTIN WHERE EXERCISE_NAME = '운동명' AND RUTIN_NUMBER ='1' AND id
 				// = '123'
