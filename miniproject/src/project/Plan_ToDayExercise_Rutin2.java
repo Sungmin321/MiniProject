@@ -164,7 +164,8 @@ public class Plan_ToDayExercise_Rutin2 {
 					if (new Insert().plan_Rutin_insert(Rutinnum, ECname, ECset, ECweight, ECnumber,
 							MemberVo.user.getId())) {
 						JOptionPane.showMessageDialog(null, "추가 success");
-						frame.setVisible(true);
+						frame.setVisible(false);
+						new Plan_ToDayExercise_Rutin2();
 					} else {
 						JOptionPane.showMessageDialog(null, "추가 fail");
 					}
@@ -285,6 +286,8 @@ public class Plan_ToDayExercise_Rutin2 {
 				if (new MemberDAO().plan_Rutin_test(ECname, Rutinnum, MemberVo.user.getId())) {
 					if (new Insert().plan_Rutin_Delete(ECname, Rutinnum, MemberVo.user.getId())) {
 						JOptionPane.showMessageDialog(null, "삭제 성공");
+						frame.setVisible(false);
+						new Plan_ToDayExercise_Rutin2();
 					}
 				}else
 					JOptionPane.showMessageDialog(null, "삭제 할 항목이 없습니다.");

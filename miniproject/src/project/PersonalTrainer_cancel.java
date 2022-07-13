@@ -6,30 +6,39 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
-import java.awt.GridLayout;
-import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 
 public class PersonalTrainer_cancel {
 
 	Color btblue = new Color(52, 152, 219);
 	Color Jorange = new Color(244, 128, 75);
-	Color JYellow = new Color(251,197,60);
+	Color JYellow = new Color(251, 197, 60);
 	Color Jlightgreen = new Color(177, 212, 98);
-	Color toolgreen = new Color(26, 188, 156); 
+	Color toolgreen = new Color(26, 188, 156);
 	private JFrame frame;
-	String header[] = {"날짜", "시간대", "Trainer", "이행여부"};
-	String contents[][] = {{"2022/06/30", "16:00 ~ 17:00", "김맥", "O"}};
-	
+	private JTable PTLookuptable;
+	String header[] = { "날짜", "이름", "시간대", "비고" };
+	ArrayList<String> ar;
+	JComboBox trnamecomboBox;
+
 	public static void main(String[] args) {
 		new PersonalTrainer_cancel();
 	}
@@ -43,18 +52,18 @@ public class PersonalTrainer_cancel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 364, 60);
 		panel.setBackground(toolgreen);
 		frame.getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
-		
+
 		JButton homeButton = new JButton("");
 		homeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new Main_Trainer();
+				new Main_Customer();
 			}
 		});
 		homeButton.setPreferredSize(new Dimension(60, 60));
@@ -62,120 +71,134 @@ public class PersonalTrainer_cancel {
 		homeButton.setBackground(toolgreen);
 		homeButton.setBorderPainted(false);
 		panel.add(homeButton, BorderLayout.WEST);
-		
-		JLabel titleLabel = new JLabel("ScheduleCancel");
-		titleLabel.setFont(new Font("HY목각파임B", Font.PLAIN, 15));
-		panel.add(titleLabel, BorderLayout.CENTER);
-		titleLabel.setForeground(Color.white);
-		
-		
-		JButton beforeButton = new JButton("\uC774\uC804\uC73C\uB85C");
-		beforeButton.addActionListener(new ActionListener() {
+
+		JLabel lblNewLabel = new JLabel("PersonalTrainer_Cancel");
+		lblNewLabel.setFont(new Font("HY목각파임B", Font.PLAIN, 15));
+		panel.add(lblNewLabel, BorderLayout.CENTER);
+		lblNewLabel.setForeground(Color.white);
+
+		JButton btnNewButton_1_3 = new JButton("\uC774\uC804\uC73C\uB85C");
+		btnNewButton_1_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
 				new Customer_PersonalTrainer();
 			}
 		});
-		beforeButton.setForeground(Color.WHITE);
-		beforeButton.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-		beforeButton.setBorderPainted(false);
-		beforeButton.setBackground(new Color(52, 152, 219));
-		beforeButton.setBounds(10, 521, 345, 50);
-		frame.getContentPane().add(beforeButton);
-		
-		JPanel canceluppanel = new JPanel();
-		canceluppanel.setBackground(Color.WHITE);
-		canceluppanel.setBounds(0, 58, 364, 450);
-		frame.getContentPane().add(canceluppanel);
-		canceluppanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		canceluppanel.setLayout(null);
-		
+		btnNewButton_1_3.setForeground(Color.WHITE);
+		btnNewButton_1_3.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+		btnNewButton_1_3.setBorderPainted(false);
+		btnNewButton_1_3.setBackground(new Color(52, 152, 219));
+		btnNewButton_1_3.setBounds(10, 521, 345, 50);
+		frame.getContentPane().add(btnNewButton_1_3);
+
+		JPanel Lookuppanel = new JPanel();
+		Lookuppanel.setBackground(Color.WHITE);
+		Lookuppanel.setBounds(0, 58, 364, 450);
+		frame.getContentPane().add(Lookuppanel);
+		Lookuppanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		Lookuppanel.setLayout(null);
+
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 66, 340, 71);
-		canceluppanel.add(scrollPane);
-		
-		JPanel PTcancelpanel = new JPanel();
-		PTcancelpanel.setBackground(Color.WHITE);
-		scrollPane.setViewportView(PTcancelpanel);
-		PTcancelpanel.setLayout(new GridLayout(0, 4, 0, 0));
-		
-		JLabel lblNewLabel = new JLabel("2022/06/30");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		PTcancelpanel.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("16:00 ~ 17:00");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		PTcancelpanel.add(lblNewLabel_1);
-		
-		JLabel lblRlaaor = new JLabel("\uC870\uC548\uB098");
-		lblRlaaor.setHorizontalAlignment(SwingConstants.CENTER);
-		PTcancelpanel.add(lblRlaaor);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		PTcancelpanel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JButton btnNewButton = new JButton("\uCDE8\uC18C");
-		btnNewButton.setBackground(btblue);
-		btnNewButton.setForeground(Color.white);
-		btnNewButton.addActionListener(new ActionListener() {
+		scrollPane.setBounds(12, 10, 340, 359);
+		Lookuppanel.add(scrollPane);
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String todaydate = dateFormat.format(new Date()); // 현재 데이터
+		Date date = null;
+		Date today = null;
+		try {
+			today = dateFormat.parse(todaydate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		ArrayList<PTVo> list = new MemberDAO().PT_list(MemberVo.user.getId());
+		System.out.println(list.size());
+		String contents[][] = new String[list.size()][4];
+		for (int i = 0; i < list.size(); i++) {
+			PTVo now = list.get(i);
+			if (now.getFlag().charAt(0) == '0') {
+				contents[i][0] = now.getDATE();
+				contents[i][1] = new MemberDAO().getTRname(now.getTR_Id()); // 트레이너 이름.
+				contents[i][2] = now.getHour();
+				try {
+					date = dateFormat.parse(now.getDATE());
+				} catch (ParseException e1) {
+					// TODO 자동 생성된 catch 블록
+					e1.printStackTrace();
+				}
+				int compare = date.compareTo(today);
+				// date = 7/10 , today = 7/11
+				if (compare > 0) { // 양수일때. << 받아온 통계 날짜가 오늘보다 클때
+					System.out.println("date가 today보다 큽니다.(date > today)");
+					contents[i][3] = "취소 가능";
+				} else if (compare < 0) {
+					contents[i][3] = "완료";
+					System.out.println("today가 date보다 큽니다.(date < today)");
+				} else {
+					System.out.println("today와 date가 같습니다.(date = today)");
+					contents[i][3] = "취소 불가능";
+				}
+			}
+		}
+
+		PTLookuptable = new JTable(contents, header);
+		PTLookuptable.setFont(new Font("굴림", Font.PLAIN, 12));
+		scrollPane.setViewportView(PTLookuptable);
+		PTLookuptable.setBorder(new LineBorder(Color.BLACK));
+
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(45, 380, 149, 22);
+		Lookuppanel.add(dateChooser);
+
+		String qurey = "SELECT count(*) FROM TRAINER_INFO WHERE TRAINER_POSITION = '1'";
+		String size = new MemberDAO().get_TR_size(qurey);
+		String trnames[] = new String[Integer.valueOf(size)];
+
+		qurey = "SELECT NAME FROM TRAINER_INFO WHERE TRAINER_POSITION = '1'";
+		ar = new MemberDAO().getNames(qurey);
+
+		for (int i = 0; i < trnames.length; i++) {
+			trnames[i] = ar.get(i);
+		}
+
+		trnamecomboBox = new JComboBox();
+		trnamecomboBox.setModel(new DefaultComboBoxModel(trnames));
+		trnamecomboBox.setBounds(11, 412, 110, 30);
+		Lookuppanel.add(trnamecomboBox);
+
+		String times[] = { "시간대", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19" };
+		JComboBox timecomboBox = new JComboBox();
+		timecomboBox.setBounds(130, 412, 110, 30);
+		timecomboBox.setModel(new DefaultComboBoxModel(times));
+		Lookuppanel.add(timecomboBox);
+
+		JButton cancelButton = new JButton("예약취소");
+		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String id = MemberVo.user.getId();
+				String date = dateChooser.getJCalendar().getYearChooser().getYear() + "-"
+						+ (dateChooser.getJCalendar().getMonthChooser().getMonth() + 1) + "-"
+						+ dateChooser.getJCalendar().getDayChooser().getDay();
+				String tr_id = new MemberDAO().getTRid(trnamecomboBox.getSelectedItem().toString());
+				String hour = timecomboBox.getSelectedItem().toString();
+
+				if (new MemberDAO().customer_delete_test(id, date, tr_id, hour)) {
+					new Insert().PT_flag_update(id, date, tr_id, hour);
+					JOptionPane.showMessageDialog(null, "예약 취소되셨습니다.");
+					frame.setVisible(false);
+					new PersonalTrainer_cancel();
+				}else
+					JOptionPane.showMessageDialog(null, "해당하는 예약항목이 없습니다.");
 			}
 		});
-		btnNewButton.setFont(new Font("돋움체", Font.BOLD, 12));
-		btnNewButton.setBounds(10, 2, 66, 30);
-		panel_1.add(btnNewButton);
-		
-		JLabel lblNewLabel_2 = new JLabel("2022/06/29");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		PTcancelpanel.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("16:00 ~ 17:00");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		PTcancelpanel.add(lblNewLabel_1_1);
-		
-		JLabel lblRlaaor_1 = new JLabel("\uBE59\uADF8\uB808");
-		lblRlaaor_1.setHorizontalAlignment(SwingConstants.CENTER);
-		PTcancelpanel.add(lblRlaaor_1);
-		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setLayout(null);
-		panel_1_1.setBackground(Color.WHITE);
-		PTcancelpanel.add(panel_1_1);
-		
-		JButton btnNewButton_1 = new JButton("\uCDE8\uC18C");
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setFont(new Font("돋움체", Font.BOLD, 12));
-		btnNewButton_1.setBackground(new Color(52, 152, 219));
-		btnNewButton_1.setBounds(10, 2, 66, 30);
-		panel_1_1.add(btnNewButton_1);
-		
-		JPanel titlepanel = new JPanel();
-		titlepanel.setBounds(12, 10, 340, 55);
-		canceluppanel.add(titlepanel);
-		titlepanel.setLayout(new GridLayout(0, 4, 0, 0));
-		
-		JLabel titleLabel1 = new JLabel("\uB0A0\uC9DC");
-		titlepanel.add(titleLabel1);
-		titleLabel1.setFont(new Font("굴림", Font.BOLD, 15));
-		titleLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JLabel titleLabel2 = new JLabel("\uC2DC\uAC04\uB300");
-		titlepanel.add(titleLabel2);
-		titleLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel2.setFont(new Font("굴림", Font.BOLD, 15));
-		
-		JLabel titleLabel3 = new JLabel("Trainer");
-		titlepanel.add(titleLabel3);
-		titleLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel3.setFont(new Font("굴림", Font.BOLD, 15));
-		
-		JLabel titleLabel3_1 = new JLabel("\uC774\uD589\uC5EC\uBD80");
-		titlepanel.add(titleLabel3_1);
-		titleLabel3_1.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel3_1.setFont(new Font("굴림", Font.BOLD, 15));
-		
+		cancelButton.setForeground(Color.WHITE);
+		cancelButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		cancelButton.setBorderPainted(false);
+		cancelButton.setBackground(new Color(52, 152, 219));
+		cancelButton.setBounds(255, 379, 97, 63);
+		Lookuppanel.add(cancelButton);
+
 		frame.setVisible(true);
 
 	}

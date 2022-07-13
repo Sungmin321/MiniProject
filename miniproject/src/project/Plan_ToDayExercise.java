@@ -37,7 +37,8 @@ public class Plan_ToDayExercise implements ItemListener {
 	private JPanel panel;
 	Color toolgreen = new Color(26, 188, 156);
 	private JRadioButton ARadioButton, BRadioButton, CRadioButton, DRadioButton;
-
+	JScrollPane scrollPane;
+	
 	public static void main(String[] args) {
 		new Plan_ToDayExercise();
 	}
@@ -97,7 +98,7 @@ public class Plan_ToDayExercise implements ItemListener {
 		main.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		main.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(6, 24, 350, 200);
 		main.add(scrollPane);
 
@@ -270,6 +271,9 @@ public class Plan_ToDayExercise implements ItemListener {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
+		panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		
 		String Rutinnum = null;
 		if (ARadioButton.isSelected()) {
 			Rutinnum = "1";

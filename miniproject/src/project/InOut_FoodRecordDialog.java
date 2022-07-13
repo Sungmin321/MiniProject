@@ -1,29 +1,29 @@
 package project;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
-import java.awt.Color;
-import com.toedter.calendar.JDateChooser;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.UIManager;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+
+import com.toedter.calendar.JDateChooser;
 
 public class InOut_FoodRecordDialog extends JDialog {
 	Color btblue = new Color(52, 152, 219);
-	
+	JDateChooser dateChooser;
+	JTextArea textArea;
+
 	private final JPanel contentPanel = new JPanel();
 
 	public static void main(String[] args) {
@@ -37,7 +37,7 @@ public class InOut_FoodRecordDialog extends JDialog {
 	}
 
 	public InOut_FoodRecordDialog() {
-		setTitle("\uC2DD\uB2E8 \uD655\uC778");
+		setTitle("식단 확인");
 		setModal(true);
 		setSize(450, 527);
 		setLocationRelativeTo(null);
@@ -51,17 +51,17 @@ public class InOut_FoodRecordDialog extends JDialog {
 			panel.setBounds(12, 10, 410, 435);
 			contentPanel.add(panel);
 			panel.setLayout(null);
-			
-			JDateChooser dateChooser = new JDateChooser();
+
+			dateChooser = new JDateChooser();
 			dateChooser.setBounds(102, 10, 296, 21);
 			panel.add(dateChooser);
-			
-			JTextArea textArea = new JTextArea();
-			textArea.setText("\uAE30\uB85D\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.");
+
+			textArea = new JTextArea();
+			textArea.setText("날짜를 선택 후 OK버튼을 눌러주세요.");
 			textArea.setBounds(12, 41, 386, 384);
 			panel.add(textArea);
-			
-			JLabel lblNewLabel = new JLabel("\uB0A0\uC9DC \uC120\uD0DD");
+
+			JLabel lblNewLabel = new JLabel("날짜 선택");
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNewLabel.setFont(new Font("문체부 바탕체", Font.PLAIN, 13));
 			lblNewLabel.setBounds(12, 10, 78, 21);
@@ -75,7 +75,15 @@ public class InOut_FoodRecordDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						setVisible(false);
+						String date = dateChooser.getJCalendar().getYearChooser().getYear() + "-"
+								+ (dateChooser.getJCalendar().getMonthChooser().getMonth() + 1) + "-"
+								+ dateChooser.getJCalendar().getDayChooser().getDay();
+						String foodrecode = new MemberDAO().get_foodrecode(MemberVo.user.getId(), date);
+						if (foodrecode.equals(""))
+							textArea.setText("해당 요일에 식단기록이 없습니다.");
+						else
+							textArea.setText(foodrecode);
+						setVisible(true);
 					}
 				});
 				okButton.setBackground(btblue);

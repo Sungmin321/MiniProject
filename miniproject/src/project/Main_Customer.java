@@ -77,21 +77,11 @@ public class Main_Customer {
 		});
 		panel.add(LogoutButton, BorderLayout.EAST);
 
-		ImageIcon icon = new ImageIcon("D:\\work\\miniproject\\image\\CMainnameBack.png");
+		ImageIcon icon = new ImageIcon("D:\\\\work\\\\miniproject\\\\image\\\\planicon.png");
 		Image img = icon.getImage();
 		// 창의 사이즈인 500,500에 맞춰서 이미지를 변경
-		Image changeImg = img.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		Image changeImg = img.getScaledInstance(150,150, Image.SCALE_SMOOTH);
 		ImageIcon changeIcon = new ImageIcon(changeImg);
-
-		icon = new ImageIcon("D:\\work\\miniproject\\image\\CMainPTBack.png");
-		img = icon.getImage();
-		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-		changeIcon = new ImageIcon(changeImg);
-
-		icon = new ImageIcon("D:\\work\\miniproject\\image\\planicon.png");
-		img = icon.getImage();
-		changeImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-		changeIcon = new ImageIcon(changeImg);
 
 		JButton PlanButton = new JButton(changeIcon);
 		PlanButton.addActionListener(new ActionListener() {

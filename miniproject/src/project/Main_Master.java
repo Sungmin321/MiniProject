@@ -25,7 +25,8 @@ public class Main_Master {
 	}
 
 	public Main_Master() {
-		System.out.println(MemberVo.user.getId());
+//		System.out.println(MemberVo.user.getId());
+		
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
 		frame.getContentPane().setBackground(Color.WHITE);

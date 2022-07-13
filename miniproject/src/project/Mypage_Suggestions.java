@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -68,7 +69,7 @@ public class Mypage_Suggestions {
 		titleLabel.setForeground(Color.white);
 		
 		
-		JButton BeforeButton = new JButton("\uC774\uC804\uC73C\uB85C");
+		JButton BeforeButton = new JButton("이전으로");
 		BeforeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -89,7 +90,7 @@ public class Mypage_Suggestions {
 		Suggestionspanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		Suggestionspanel.setLayout(null);
 		
-		JLabel SuggestionsLabel = new JLabel("\uAC74\uC758 \uC0AC\uD56D");
+		JLabel SuggestionsLabel = new JLabel("건의사항");
 		SuggestionsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		SuggestionsLabel.setFont(new Font("굴림", Font.BOLD, 25));
 		SuggestionsLabel.setBackground(Color.WHITE);
@@ -99,7 +100,7 @@ public class Mypage_Suggestions {
 		JTextArea SuggestionstextArea = new JTextArea();
 		SuggestionstextArea.setBackground(Color.WHITE);
 		SuggestionstextArea.setFont(new Font("함초롬바탕", Font.PLAIN, 13));
-		SuggestionstextArea.setText("\uAC74\uC758\uC0AC\uD56D\uC744 \uB0A8\uACA8\uC8FC\uC138\uC694");
+		SuggestionstextArea.setText("건의사항을 남겨주세요");
 		SuggestionstextArea.setBounds(12, 50, 340, 392);
 		   // TextArea의 테두리선의 색을 검정 두깨를 3px로 설정합니다.
 	    Border lineBorder = BorderFactory.createLineBorder(Color.black, 2);
@@ -109,18 +110,13 @@ public class Mypage_Suggestions {
 	    SuggestionstextArea.setBorder(BorderFactory.createCompoundBorder(lineBorder, emptyBorder));
 		Suggestionspanel.add(SuggestionstextArea);
 		
-		JButton SaveButton = new JButton("SAVE");
+		JButton SaveButton = new JButton("저장하기");
 		SaveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String contents = SuggestionstextArea.getText();
 				if(new Insert().NOTI_BOARD_insert(contents, MemberVo.user.getId())) {
-					
+					JOptionPane.showMessageDialog(null, "정상적으로 저장되었습니다.");
 				}
-//				if(new MemberDAO().NOTICE_BOARD_check(MemberVo.user.getId())) {
-//					//true -> 당일날 데이터가 있음. 내용을 수정하는 형식으로,
-//				}else {
-//					//false -> 당일날 데이터가 없음. 새로 등록
-//				}
 			}
 		});
 		SaveButton.setForeground(Color.WHITE);
@@ -130,8 +126,6 @@ public class Mypage_Suggestions {
 		SaveButton.setBounds(185, 521, 170, 50);
 		frame.getContentPane().add(SaveButton);
 		
-		ButtonGroup group = new ButtonGroup();
 		frame.setVisible(true);
-
 	}
 }

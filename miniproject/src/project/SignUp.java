@@ -4,12 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,7 +19,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import java.awt.GridLayout;
 
 public class SignUp {
 	Color Jgreen = new Color(17, 113, 89);
@@ -59,21 +58,21 @@ public class SignUp {
 		frame.setVisible(true);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("well healthy");
-		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 24));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(93, 10, 164, 35);
-		contentPane.add(lblNewLabel);
-		lblNewLabel.setForeground(Jgreen);
+		JLabel logoLabel = new JLabel("well healthy");
+		logoLabel.setBackground(Color.WHITE);
+		logoLabel.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+		logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		logoLabel.setBounds(100, 10, 164, 35);
+		contentPane.add(logoLabel);
+		logoLabel.setForeground(Jgreen);
 
-		JLabel lblNewLabel_1 = new JLabel("\uD68C\uC6D0\uAC00\uC785");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		lblNewLabel_1.setBackground(Color.WHITE);
-		lblNewLabel_1.setBounds(93, 48, 164, 35);
-		contentPane.add(lblNewLabel_1);
+		JLabel signupLabel = new JLabel("회원가입");
+		signupLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		signupLabel.setForeground(Color.BLACK);
+		signupLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		signupLabel.setBackground(Color.WHITE);
+		signupLabel.setBounds(100, 48, 164, 35);
+		contentPane.add(signupLabel);
 
 		JPanel idpanel = new JPanel();
 		idpanel.setBackground(Color.WHITE);
@@ -81,7 +80,7 @@ public class SignUp {
 		contentPane.add(idpanel);
 		idpanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel idLabel = new JLabel("\uC544\uC774\uB514");
+		JLabel idLabel = new JLabel("아이디");
 		idLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		idLabel.setBackground(Color.WHITE);
 		idLabel.setPreferredSize(new Dimension(90, 40));
@@ -97,7 +96,7 @@ public class SignUp {
 		contentPane.add(pwpanel);
 		pwpanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel pwLabel = new JLabel("\uBE44\uBC00\uBC88\uD638");
+		JLabel pwLabel = new JLabel("비밀번호");
 		pwLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		pwLabel.setBackground(Color.WHITE);
 		pwpanel.add(pwLabel, BorderLayout.WEST);
@@ -112,7 +111,7 @@ public class SignUp {
 		contentPane.add(pwrpanel);
 		pwrpanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel pwrLabel = new JLabel("\uBE44\uBC00\uBC88\uD638 \uC7AC\uD655\uC778");
+		JLabel pwrLabel = new JLabel("비밀번호 재확인");
 		pwrLabel.setPreferredSize(new Dimension(90, 40));
 		pwrLabel.setBackground(Color.WHITE);
 		pwrpanel.add(pwrLabel, BorderLayout.WEST);
@@ -126,7 +125,7 @@ public class SignUp {
 		contentPane.add(namepanel);
 		namepanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel nLabel = new JLabel("\uC774\uB984");
+		JLabel nLabel = new JLabel("이름");
 		nLabel.setPreferredSize(new Dimension(90, 40));
 		nLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		nLabel.setBackground(Color.WHITE);
@@ -142,19 +141,19 @@ public class SignUp {
 		contentPane.add(sexpanel);
 		sexpanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel sexLabel = new JLabel("\uC131\uBCC4");
+		JLabel sexLabel = new JLabel("성별");
 		sexLabel.setPreferredSize(new Dimension(90, 40));
 		sexLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		sexLabel.setBackground(Color.WHITE);
 		sexpanel.add(sexLabel, BorderLayout.WEST);
 
-		JRadioButton MRadioButton = new JRadioButton("\uB0A8\uC790");
+		JRadioButton MRadioButton = new JRadioButton("남자");
 		MRadioButton.setBackground(Color.WHITE);
 		MRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
 		sexpanel.add(MRadioButton, BorderLayout.CENTER);
 		MRadioButton.setPreferredSize(new Dimension(125, 38));
 
-		JRadioButton WRadioButton = new JRadioButton("\uC5EC\uC790");
+		JRadioButton WRadioButton = new JRadioButton("여자");
 		WRadioButton.setBackground(Color.WHITE);
 		WRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
 		sexpanel.add(WRadioButton, BorderLayout.EAST);
@@ -170,7 +169,7 @@ public class SignUp {
 		contentPane.add(BDpanel);
 		BDpanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel BDLabel = new JLabel("\uC0DD\uB144\uC6D4\uC77C(6\uC790\uB9AC)");
+		JLabel BDLabel = new JLabel("생년월일(6자리)");
 		BDLabel.setPreferredSize(new Dimension(90, 40));
 		BDLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		BDLabel.setBackground(Color.WHITE);
@@ -207,7 +206,7 @@ public class SignUp {
 		contentPane.add(telpanel);
 		telpanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel telLabel = new JLabel("\uC804\uD654\uBC88\uD638(-\uC81C\uC678)");
+		JLabel telLabel = new JLabel("전화번호(-제외)");
 		telLabel.setPreferredSize(new Dimension(90, 40));
 		telLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		telLabel.setBackground(Color.WHITE);
@@ -217,12 +216,29 @@ public class SignUp {
 		teltextField.setColumns(10);
 		telpanel.add(teltextField, BorderLayout.CENTER);
 
-		JButton signupButton = new JButton("\uAC00\uC785\uD558\uAE30");
+		JButton signupButton = new JButton("가입하기");
 		signupButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ID = txtId.getText();
+				if (txtId.getText().length() > 4) {
+					JOptionPane.showMessageDialog(null, "ID를 5자리 이상 입력해주세요.");
+				} else if (passwordField.getText().length() > 4) {
+					JOptionPane.showMessageDialog(null, "비밀번호를 5자리 이상 입력해주세요.");
+				} else if (passwordField_1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "비밀번호 재확인을 정확히 입력해주세요.");
+				} else if (nametextField.getText().length() > 2) {
+					JOptionPane.showMessageDialog(null, "이름을 2자리 이상 입력해주세요.");
+				} else if (BDtextField.getText().chars().allMatch(Character::isDigit)) {
+					JOptionPane.showMessageDialog(null, "숫자만 입력해주세요.");
+				} else if (mailidtextField.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "메일 아이디를 입력해주세요.");
+				} else if (mailtextField.getText().length() > 6) {
+					JOptionPane.showMessageDialog(null, "메일 주소를 정확히 입력해주세요.");
+				} else if (teltextField.getText().chars().allMatch(Character::isDigit)) {
+					JOptionPane.showMessageDialog(null, "숫자만 입력해주세요.");
+				}
 				// 비밀번호, 비밀번호 재확인이 통과되야 다음단계로 넘어감.
-				if (passwordField.getText().equals(passwordField_1.getText())) {
+				else if (passwordField.getText().equals(passwordField_1.getText())) {
+					ID = txtId.getText();
 					PASSWORD = passwordField.getText();
 					NAME = nametextField.getText();
 					if (MRadioButton.isSelected()) {
@@ -242,31 +258,28 @@ public class SignUp {
 						// 메인화면으로 이동한다는 다이알로그 화면 하나 만들어주기.
 						frame.setVisible(false);
 						new Login();
-						// 로그인하러 내보내기
 					} else {
 						System.out.println("실패");
-						JOptionPane.showInternalMessageDialog(null, "fail\n다시입력해주세요");
+						JOptionPane.showInternalMessageDialog(null, "fail\nID 중복, 다른ID를 입력해주세요.");
 						// 실패했다는 다이알로그 화면 하나 만들어주기.
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "비밀번호 확인 요망");
-					System.out.println("비밀번호가 같지않다.");
+					JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다. 다시 확인해주세요.");
 				}
 			}
 		});
 		signupButton.setFont(new Font("문체부 제목 돋음체", Font.BOLD, 20));
 		signupButton.setBackground(Jgreen);
 		signupButton.setForeground(Color.white);
-		signupButton.setBounds(84, 523, 195, 48);
+		signupButton.setBounds(85, 523, 195, 48);
 		contentPane.add(signupButton);
 		signupButton.setBorderPainted(false);
 
-		JLabel emailLabel = new JLabel("\uC774\uBA54\uC77C");
+		JLabel emailLabel = new JLabel("E-mail");
 		emailLabel.setBounds(12, 393, 83, 40);
 		contentPane.add(emailLabel);
 		emailLabel.setPreferredSize(new Dimension(45, 40));
 		emailLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		emailLabel.setBackground(Color.WHITE);
-
 	}
 }

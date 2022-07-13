@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class Insert {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -18,31 +20,6 @@ public class Insert {
 
 	public Insert() {
 	}
-
-//	public Insert(String ID, String PASSWORD, String NAME, int SEX, String BIRTHDAY, String EMAIL, int PHONE_NUMBER) {
-//		try {
-//			Class.forName(driver);
-//			System.out.println("jdbc driver loading success.");
-//			con = DriverManager.getConnection(url, user, password);
-//			System.out.println("oracle connection success.\n");
-//			stmt = con.createStatement();
-//
-//			String sql = "INSERT INTO CUSTOMER_INFO VALUES ('" + ID + "', '" + PASSWORD + "', '" + NAME + "', '" + SEX
-//					+ "', '" + BIRTHDAY + "', '" + EMAIL + "', '" + PHONE_NUMBER + "',3,2)";
-//			boolean b = stmt.execute(sql);
-//			if (!b) {
-//				System.out.println("Insert success.\n");
-//			} else {
-//				System.out.println("Insert fail.\n");
-//			}
-//
-//		} catch (ClassNotFoundException e) {
-//			System.out.println(e);
-//		} catch (SQLException e) {
-//			System.out.println(e);
-//		}
-//
-//	}
 
 	public static void main(String[] args) {
 	}
@@ -77,7 +54,7 @@ public class Insert {
 			connDB();
 
 			String sql = "INSERT INTO TRAINER_INFO VALUES ('" + ID + "', '" + PASSWORD + "', '" + NAME + "', " + SEX
-					+ ", '" + PHONE_NUMBER + "',1,1,1,1,1,1,1,1,1,1,1,1)";
+					+ ", " + PHONE_NUMBER + ",'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y',1)";
 			System.out.println(sql);
 			boolean b = stmt.execute(sql);
 			if (!b) {
@@ -136,10 +113,10 @@ public class Insert {
 			boolean b = stmt.execute(query);
 
 			if (!b) {
-				System.out.println("Insert success.\n");
+				System.out.println("UPDATE success.\n");
 				return true;
 			} else {
-				System.out.println("Insert fail.\n");
+				System.out.println("UPDATE fail.\n");
 				return false;
 			}
 		} catch (Exception e) {
@@ -228,6 +205,95 @@ public class Insert {
 
 	}
 
+	// pt 예약하는데 있나없나 보는거.
+	public boolean PT_Reservation_insert(String id, String tr_id, String date, String hour) {
+		try {
+			connDB();
+			// SELECT * FROM PT_RESERVATION WHERE TR_ID = 'tr2' AND PT_DATE = '2022-07-11'
+			// AND PT_HOUR = 12 AND FLAG = '0'
+			String query = "SELECT count(*) FROM PT_RESERVATION WHERE TR_ID = '" + tr_id + "' AND PT_DATE = '" + date
+					+ "' AND PT_HOUR = " + hour + " AND FLAG = '0'";
+			System.out.println("SQL : " + query);
+			rs = stmt.executeQuery(query);
+			rs.next();
+			System.out.println("rs.next 통과");
+			int count = rs.getInt("count(*)");
+			System.out.println("count 저장");
+
+			if (count == 0) {
+				System.out.println("count == 0, 해당 시간대 겹치는 사람 없음. true");
+
+				query = "SELECT count(*) FROM PT_RESERVATION";
+				System.out.println("SQL : " + query);
+				rs = stmt.executeQuery(query);
+				rs.next();
+				System.out.println("rs.next 통과");
+				String count2 = String.valueOf(rs.getInt("count(*)") + 1);
+				System.out.println("count 저장");
+				// INSERT INTO PT_RESERVATION VALUES (1, '123', 'tr2', '2022-07-11', 12, 0)
+				query = "INSERT INTO PT_RESERVATION VALUES (" + count2 + ", '" + id + "' ,'" + tr_id + "', '" + date
+						+ "', " + hour + ", 0)";
+				System.out.println(query);
+				boolean b = stmt.execute(query);
+
+				if (!b) {
+					System.out.println("Insert success.\n");
+					new Insert().PT_number_option(id, "-1");
+					return true;
+				} else {
+					System.out.println("Insert fail.\n");
+					return false;
+				}
+			} else {
+				System.out.println("count != 0, 해당 시간대 겹치는 사람 있음. false");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	// PT 예약취소 하는거
+	public void PT_flag_update(String id, String date, String tr_id, String hour) {
+		try {
+//UPDATE PT_RESERVATION SET FLAG = 1 WHERE id = '123' AND PT_DATE = '222222' AND TR_ID = 'tr1' AND PT_HOUR = ''
+			connDB();
+			String query = "UPDATE PT_RESERVATION SET FLAG = 1 WHERE id = '" + id + "' AND PT_DATE = '" + date
+					+ "' AND TR_ID = '" + tr_id + "' AND PT_HOUR = " + hour + "";
+			System.out.println(query);
+			boolean b = stmt.execute(query);
+			System.out.println(b);
+			if (!b) {
+				System.out.println("flag 업데이트");
+				new Insert().PT_number_option(id, "+1");
+			} else
+				System.out.println("flag 업데이트 실패");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void PT_number_option(String id, String INT) {
+		try {
+			connDB();
+
+			String query = "UPDATE CUSTOMER_INFO SET PT_NUMBER = PT_NUMBER "+INT+" WHERE ID = '" + id + "'";
+
+			boolean b = stmt.execute(query);
+
+			if (!b) {
+				System.out.println("Insert success.\n");
+			} else {
+				System.out.println("Insert fail.\n");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 루틴으로 넘어가는데 있나 없나 보는거
 	public boolean plan_Rutin_check(String rutinnum, String id) {
 		try {
@@ -414,10 +480,11 @@ public class Insert {
 	public boolean Trainer_update(String password, String phone_number, String id) {
 		try {
 			connDB();
-			String query = "UPDATE TRAINER_INFO SET PASSWORD = '" + password + "', PHONE_NUMBER = " + phone_number + " WHERE ID = '" + id + "'";
-			
+			String query = "UPDATE TRAINER_INFO SET PASSWORD = '" + password + "', PHONE_NUMBER = " + phone_number
+					+ " WHERE ID = '" + id + "'";
+
 			boolean b = stmt.execute(query);
-			
+
 			if (!b) {
 				System.out.println("update success.\n");
 				return true;
@@ -429,7 +496,91 @@ public class Insert {
 			e.printStackTrace();
 			return false;
 		}
-		
+
+	}
+
+	public boolean Customer_Ptnumber_update(String ptcount, String name) {
+		try {
+			connDB();
+			String query = "UPDATE CUSTOMER_INFO SET PT_NUMBER = " + ptcount + " WHERE name = '" + name + "'";
+
+			boolean b = stmt.execute(query);
+
+			if (!b) {
+				System.out.println("update success.\n");
+				return true;
+			} else {
+				System.out.println("update fail.\n");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean Trainer_timeset(String qur) {
+		try {
+			connDB();
+			String query = qur;
+
+			boolean b = stmt.execute(query);
+
+			if (!b) {
+				System.out.println("UPDATE success.\n");
+				return true;
+			} else {
+				System.out.println("UPDATE fail.\n");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean Customer_Delete(String name) {
+		try {
+			connDB();
+			String query = "UPDATE CUSTOMER_INFO SET CUSTOMER_POSITION = '3' WHERE NAME = '" + name + "'";
+
+			boolean b = stmt.execute(query);
+
+			if (!b) {
+				System.out.println("UPDATE success.\n");
+				return true;
+			} else {
+				System.out.println("UPDATE fail.\n");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean Trainer_Delete(String name) {
+		try {
+			connDB();
+			String query = "UPDATE TRAINER_INFO SET TRAINER_POSITION = '2' WHERE  NAME ='" + name + "'";
+
+			boolean b = stmt.execute(query);
+
+			if (!b) {
+				System.out.println("Insert success.\n");
+				return true;
+			} else {
+				System.out.println("Insert fail.\n");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 	public void connDB() {

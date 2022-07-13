@@ -41,18 +41,18 @@ public class Login {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 
-		JLabel lblNewLabel = new JLabel("well healthy");
-		lblNewLabel.setForeground(new Color(17, 113, 89));
-		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 47));
-		lblNewLabel.setBounds(41, 10, 280, 68);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel rogoLabel = new JLabel("well healthy");
+		rogoLabel.setForeground(new Color(17, 113, 89));
+		rogoLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 47));
+		rogoLabel.setBounds(41, 10, 280, 68);
+		frame.getContentPane().add(rogoLabel);
 
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 40));
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(107, 460, 160, 73);
-		frame.getContentPane().add(btnNewButton);
+		JButton loginButton = new JButton("Login");
+		loginButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 40));
+		loginButton.setBorderPainted(false);
+		loginButton.setBackground(Color.WHITE);
+		loginButton.setBounds(107, 460, 160, 73);
+		frame.getContentPane().add(loginButton);
 
 		JButton SignupButton = new JButton(
 				"회원가입");
@@ -68,58 +68,58 @@ public class Login {
 		SignupButton.setBounds(12, 543, 344, 33);
 		frame.getContentPane().add(SignupButton);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(12, 377, 340, 30);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel pwdpanel = new JPanel();
+		pwdpanel.setBackground(Color.WHITE);
+		pwdpanel.setBounds(12, 377, 340, 30);
+		frame.getContentPane().add(pwdpanel);
+		pwdpanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNewLabel_1 = new JLabel("PASSWORD");
-		lblNewLabel_1.setPreferredSize(new Dimension(90, 40));
-		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		panel_1.add(lblNewLabel_1, BorderLayout.WEST);
+		JLabel passwordLabel = new JLabel("PASSWORD");
+		passwordLabel.setPreferredSize(new Dimension(90, 40));
+		passwordLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		pwdpanel.add(passwordLabel, BorderLayout.WEST);
 
 		passwordField = new JPasswordField();
-		panel_1.add(passwordField, BorderLayout.CENTER);
+		pwdpanel.add(passwordField, BorderLayout.CENTER);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(12, 417, 344, 33);
-		frame.getContentPane().add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel radiopanel = new JPanel();
+		radiopanel.setBackground(Color.WHITE);
+		radiopanel.setBounds(12, 417, 344, 33);
+		frame.getContentPane().add(radiopanel);
+		radiopanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JRadioButton MasterRadioButton = new JRadioButton("\uAD00\uB9AC\uC790");
+		JRadioButton MasterRadioButton = new JRadioButton("관리자");
 		MasterRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
 		MasterRadioButton.setBackground(Color.WHITE);
-		panel.add(MasterRadioButton);
+		radiopanel.add(MasterRadioButton);
 
-		JRadioButton TrannerRadioButton = new JRadioButton("\uD2B8\uB808\uC774\uB108");
+		JRadioButton TrannerRadioButton = new JRadioButton("트레이너");
 		TrannerRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
 		TrannerRadioButton.setBackground(Color.WHITE);
-		panel.add(TrannerRadioButton);
+		radiopanel.add(TrannerRadioButton);
 
-		JRadioButton CustomerRadioButton = new JRadioButton("\uD68C\uC6D0");
+		JRadioButton CustomerRadioButton = new JRadioButton("회원");
 		CustomerRadioButton.setHorizontalAlignment(SwingConstants.LEFT);
 		CustomerRadioButton.setBackground(Color.WHITE);
-		panel.add(CustomerRadioButton);
+		radiopanel.add(CustomerRadioButton);
 
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBackground(Color.WHITE);
-		panel_1_1.setBounds(12, 348, 340, 30);
-		frame.getContentPane().add(panel_1_1);
-		panel_1_1.setLayout(new BorderLayout(0, 0));
+		JPanel idpanel = new JPanel();
+		idpanel.setBackground(Color.WHITE);
+		idpanel.setBounds(12, 348, 340, 30);
+		frame.getContentPane().add(idpanel);
+		idpanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNewLabel_1_1 = new JLabel("ID");
-		lblNewLabel_1_1.setPreferredSize(new Dimension(90, 40));
-		lblNewLabel_1_1.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		lblNewLabel_1_1.setBackground(Color.WHITE);
-		panel_1_1.add(lblNewLabel_1_1, BorderLayout.WEST);
+		JLabel idLabel = new JLabel("ID");
+		idLabel.setPreferredSize(new Dimension(90, 40));
+		idLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		idLabel.setBackground(Color.WHITE);
+		idpanel.add(idLabel, BorderLayout.WEST);
 
 		textField = new JTextField();
 		textField.setColumns(10);
-		panel_1_1.add(textField, BorderLayout.CENTER);
+		idpanel.add(textField, BorderLayout.CENTER);
 
-		btnNewButton.addActionListener(new ActionListener() {
+		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (textField.getText().equals("") & passwordField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "ID와 PASSWORD를 입력해주세요");
@@ -130,8 +130,7 @@ public class Login {
 				else {
 					String id = textField.getText();
 					vo = new MemberVo(id, passwordField.getText());
-					MemberVo.userInit(vo);
-//							MemberVo.user.getId();
+					MemberVo.userInit(vo); // Membervo에 정보 저장
 					if (CustomerRadioButton.isSelected()) {
 						flag = new MemberDAO().Customer_Login(vo);
 						if (flag) {
@@ -139,7 +138,6 @@ public class Login {
 							JOptionPane.showMessageDialog(null, "로그인 성공\n");
 							frame.setVisible(false);
 							new Main_Customer();
-//						new Main_Customer(id);
 						} else {
 							System.out.println("로그인실패");
 							JOptionPane.showMessageDialog(null, "로그인 실패\nID,PASSWORD를 확인해주세요");
@@ -148,11 +146,9 @@ public class Login {
 						flag = new MemberDAO().Trainer_Login(vo);
 						if (flag) {
 							JOptionPane.showMessageDialog(null, "로그인 성공");
-//						JOptionPane.showConfirmDialog(null, e);
 							System.out.println("로그인 성공하셨습니다");
 							frame.setVisible(false);
 							new Main_Trainer();
-//						new Main_Trainer(id);
 						} else
 							JOptionPane.showMessageDialog(null, "로그인 실패\nID,PASSWORD를 확인해주세요");
 					} else if (MasterRadioButton.isSelected()) {
@@ -162,7 +158,6 @@ public class Login {
 							System.out.println("로그인 성공하셨습니다");
 							frame.setVisible(false);
 							new Main_Master();
-//						new Main_Master(id);
 						} else
 							JOptionPane.showMessageDialog(null, "로그인 실패\nID,PASSWORD를 확인해주세요");
 					}
@@ -174,10 +169,10 @@ public class Login {
 		group.add(MasterRadioButton);
 		group.add(TrannerRadioButton);
 		group.add(CustomerRadioButton);
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("D:\\work\\miniproject\\image\\\uB85C\uADF8\uC778 \uC0AC\uB78C.png"));
-		lblNewLabel_2.setBounds(61, 61, 241, 277);
-		frame.getContentPane().add(lblNewLabel_2);
+		JLabel Logo = new JLabel("");
+		Logo.setIcon(new ImageIcon("D:\\work\\miniproject\\image\\\uB85C\uADF8\uC778 \uC0AC\uB78C.png"));
+		Logo.setBounds(68, 85, 228, 236);
+		frame.getContentPane().add(Logo);
 		frame.setVisible(true);
 	}
 }

@@ -6,6 +6,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,9 +31,6 @@ public class Trainer_Scheduleinquiry {
 	private JFrame frame;
 	private JTable table;
 	String header[] = {"날짜", "시간대", "회원명", "이행여부"};
-	String contents[][] = {{"2022/06/30", "16:00~17:00", "조안나", "예약"},
-			{"2022/06/29", "16:00~17:00", "빙그레", "예약"},
-			{"2022/06/28", "16:00~17:00", "이진수", "완료"}};
 	
 	public static void main(String[] args) {
 		new Trainer_Scheduleinquiry();
@@ -95,6 +96,49 @@ public class Trainer_Scheduleinquiry {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 10, 340, 433);
 		panel_3.add(scrollPane);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String todaydate = dateFormat.format(new Date()); // 현재 데이터
+		Date date = null;
+		Date today = null;
+		try {
+			today = dateFormat.parse(todaydate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<PTVo> list = new MemberDAO().PT_list_tr(MemberVo.user.getId());
+		System.out.println(list.size());
+		String contents[][] = new String[list.size()][4];
+		for (int i = 0; i < list.size(); i++) {
+			PTVo now = list.get(i);
+			contents[i][0] = now.getDATE();
+			contents[i][1] = now.getHour();
+			contents[i][2] = new MemberDAO().getname(now.getTR_Id());
+			if (now.getFlag().charAt(0) == '0') {
+				try {
+					date = dateFormat.parse(now.getDATE());
+				} catch (ParseException e1) {
+					// TODO 자동 생성된 catch 블록
+					e1.printStackTrace();
+				}
+				int compare = date.compareTo(today);
+				// date = 7/10 , today = 7/11
+				if (compare > 0) { // 양수일때. << 받아온 통계 날짜가 오늘보다 클때
+					System.out.println("date가 today보다 큽니다.(date > today)");
+					contents[i][3] = "예약 중";
+				} else if (compare < 0) {
+					contents[i][3] = "완료";
+					System.out.println("today가 date보다 큽니다.(date < today)");
+				} else {
+					System.out.println("today와 date가 같습니다.(date = today)");
+					contents[i][3] = "예약 중";
+				}
+			} else {
+				contents[i][3] = "예약 취소";
+			}
+
+		}
 		
 		table = new JTable(contents, header);
 		scrollPane.setViewportView(table);

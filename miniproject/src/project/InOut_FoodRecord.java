@@ -74,7 +74,7 @@ public class InOut_FoodRecord {
 		headpanel.add(lblNewLabel, BorderLayout.CENTER);
 		lblNewLabel.setForeground(Color.white);
 
-		JButton backbtn = new JButton("\uC774\uC804\uC73C\uB85C");
+		JButton backbtn = new JButton("이전으로");
 		backbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -88,11 +88,6 @@ public class InOut_FoodRecord {
 		backbtn.setBounds(10, 521, 170, 50);
 		frame.getContentPane().add(backbtn);
 
-		ImageIcon icon = new ImageIcon("D:\\\\work\\\\miniproject\\\\image\\\\rutinadd.png");
-		Image img = icon.getImage();
-		Image changeImg = img.getScaledInstance(350, 48, Image.SCALE_SMOOTH);
-		ImageIcon changeIcon = new ImageIcon(changeImg);
-
 		JPanel mainpanel = new JPanel();
 		mainpanel.setBackground(SystemColor.inactiveCaptionBorder);
 		mainpanel.setBounds(0, 59, 364, 452);
@@ -100,7 +95,7 @@ public class InOut_FoodRecord {
 		mainpanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		mainpanel.setLayout(null);
 
-		JLabel FoodRecordLabel = new JLabel("\uC2DD\uB2E8 \uAE30\uB85D");
+		JLabel FoodRecordLabel = new JLabel("식단 기록");
 		FoodRecordLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		FoodRecordLabel.setFont(new Font("굴림", Font.BOLD, 25));
 		FoodRecordLabel.setBackground(Color.WHITE);
@@ -111,13 +106,13 @@ public class InOut_FoodRecord {
 		FoodRecordtextArea.setBounds(12, 50, 340, 392);
 		mainpanel.add(FoodRecordtextArea);
 
-		JButton Savebtn = new JButton("SAVE");
+		JButton Savebtn = new JButton("저장하기");
 		Savebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (new MemberDAO().Inout_test(MemberVo.user.getId())) {
 					String recode = FoodRecordtextArea.getText();
 					if (new Insert().Inout_FoodRecode_update(MemberVo.user.getId(), recode))
-						JOptionPane.showMessageDialog(null, "data success");
+						JOptionPane.showMessageDialog(null, "식단기록이 정상저장 되었습니다.");
 				} else
 					JOptionPane.showMessageDialog(null, "체중입력 먼저 해주세요!");
 			}
@@ -129,8 +124,6 @@ public class InOut_FoodRecord {
 		Savebtn.setBounds(185, 521, 170, 50);
 		frame.getContentPane().add(Savebtn);
 
-		ButtonGroup group = new ButtonGroup();
 		frame.setVisible(true);
-
 	}
 }

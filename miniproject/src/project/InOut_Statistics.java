@@ -117,7 +117,7 @@ public class InOut_Statistics {
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(Color.BLACK));
 
-		JButton btnNewButton_1_3_1 = new JButton("\uC2DD\uB2E8\uAE30\uB85D \uD655\uC778");
+		JButton btnNewButton_1_3_1 = new JButton("식단기록 확인");
 		btnNewButton_1_3_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InOut_FoodRecordDialog.main(null);
